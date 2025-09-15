@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barber Shop | Sample Website</title>
+  <style>
+    /* ===== CSS ===== */
+    :root {
+      --gold: #d4af37;
+      --black: #111;
+      --white: #fff;
+    }
+
+    body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--black); color: var(--white); }
+
+    /* NAVBAR */
+    .navbar { display: flex; justify-content: space-between; padding: 15px 30px; background: var(--black); color: var(--white); align-items: center; position: sticky; top: 0; z-index: 1000; }
+    .navbar ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+    .navbar a { color: var(--white); text-decoration: none; font-weight: 500; transition: 0.3s; }
+    .navbar a:hover { color: var(--gold); }
+    .logo { font-size: 1.5rem; font-weight: bold; }
+    .logo span { color: var(--gold); }
+
+    /* Hamburger */
+    .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+    .hamburger div { width: 25px; height: 3px; background: var(--white); transition: 0.3s; }
+
+    /* HERO */
+    .hero { position: relative; text-align: center; color: var(--white); }
+    .hero-img { width: 100%; height: 80vh; object-fit: cover; filter: brightness(0.4); }
+    .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .hero-text h1 { font-size: 3rem; margin: 0; color: var(--gold); text-shadow: 2px 2px 5px rgba(0,0,0,0.7); }
+    .hero-text p { font-size: 1.2rem; }
+    .btn { display: inline-block; background: var(--gold); color: var(--black); padding: 12px 25px; margin-top: 15px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+    .btn:hover { background: var(--white); color: var(--black); }
+
+    /* SECTIONS */
+    .services, .about, .gallery, .contact { padding: 60px 20px; text-align: center; background: var(--black); }
+    h2 { color: var(--gold); font-size: 2rem; margin-bottom: 30px; }
+
+    /* SERVICES */
+    .service-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .service { background: #1c1c1c; padding: 20px; border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s; }
+    .service img { width: 60px; margin-bottom: 10px; }
+    .service h3 { color: var(--gold); margin-bottom: 10px; }
+    .service:hover { transform: translateY(-5px); box-shadow: 0 4px 15px rgba(0,0,0,0.6); }
+
+    /* ABOUT */
+    .about-content { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; justify-content: center; }
+    .about-content img { width: 300px; border-radius: 10px; border: 3px solid var(--gold); }
+    .about-content p { max-width: 500px; line-height: 1.6; }
+
+    /* GALLERY */
+    .gallery-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .gallery-grid img { width: 100%; border-radius: 10px; border: 2px solid var(--gold); transition: transform 0.3s; }
+    .gallery-grid img:hover { transform: scale(1.05); }
+
+    /* CONTACT */
+    .map { width: 100%; max-width: 600px; margin: 20px 0; border-radius: 10px; border: 2px solid var(--gold); }
+    form { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: auto; }
+    input, textarea { padding: 12px; border: 1px solid var(--gold); border-radius: 5px; background: #222; color: var(--white); }
+    button { background: var(--gold); color: var(--black); padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+    button:hover { background: var(--white); color: var(--black); }
+
+    /* FOOTER */
+    footer { background: #000; color: var(--white); text-align: center; padding: 20px; margin-top: 50px; border-top: 2px solid var(--gold); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .navbar ul { flex-direction: column; background: var(--black); position: absolute; top: 60px; right: -100%; width: 200px; transition: right 0.3s; border-radius: 5px; }
+      .navbar ul.active { right: 20px; }
+      .hamburger { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="logo">Barber<span>Style</span></div>
+    <nav>
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul id="nav-menu">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section id="hero" class="hero">
+    <img src="images/barber.webp" alt="Barber cutting hair" class="hero-img">
+    <div class="hero-text">
+      <h1>Classic Cuts & Modern Styles</h1>
+      <p>Your trusted barber for the perfect look</p>
+      <a href="mailto:info@barberstyle.com?subject=Booking%20Request" class="btn">Book Now</a>
+
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <div class="service-grid">
+      <div class="service">
+        <img src="images/haircut.png" alt="Haircut icon">
+        <h3>Haircuts</h3>
+        <p>Professional cuts for all styles.</p>
+      </div>
+      <div class="service">
+        <img src="images/razor.png" alt="Shave icon">
+        <h3>Shaves</h3>
+        <p>Clean, close shaves for a fresh look.</p>
+      </div>
+      <div class="service">
+        <img src="images/mustache-with-beard.png" alt="Beard icon">
+        <h3>Beard Trim</h3>
+        <p>Sharp beard trims to keep you stylish.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="about">
+    <h2>About Us</h2>
+    <div class="about-content">
+      <img src="images/baber studio.webp" alt="Barber portrait">
+      <div>
+        <p>At BarberStyle, we combine tradition with modern style. Our skilled barbers ensure every client leaves looking sharp and confident. Whether it’s a fresh fade, a clean shave, or a sharp beard trim, we’ve got you covered.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section id="gallery" class="gallery">
+    <h2>Our Work</h2>
+    <div class="gallery-grid">
+      <img src="images/Beards.webp" alt="Haircut style 1">
+      <img src="images/Burst-Fade.jpg" alt="Haircut style 2">
+      <img src="images/Drop-Fade.webp" alt="Haircut style 3">
+      <img src="images/Love all his music.webp" alt="Haircut style 4">
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>📍 shop number 4, 26 Kerk St, Mpumalanga, Ermelo, 2351</p>
+    <p>📞 +2772 244 4557</p>
+    <p>✉️ info@barberstyle.com</p>
+    <iframe 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3304.123456!2d30.123456!3d-26.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1eec1234567890%3A0x123456789abcdef!2sErmelo%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v1234567890123!5m2!1sen!2sza" 
+  width="600" 
+  height="400" 
+  style="border:0; width:100%; height:400px;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+
+    
+
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2025 BarberStyle. Designed by <span style="color: gold;">AriDesign.</span></p>
+  </footer>
+
+  <script>
+    // ===== SIMPLE JAVASCRIPT =====
+
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Simple form alert
+    document.querySelector("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Thank you! Your message has been sent.");
+    });
+  </script>
+</body>
+</html>
