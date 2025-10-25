@@ -171,6 +171,30 @@ footer { background: #000; color: var(--white); text-align: center; padding: 25p
   .hero { height: 60vh; }
 }
 @media(max-width:480px){ .hero-text h1 { font-size: 1.8rem; } .hero-text p { font-size: 0.9rem; } .service-grid, .gallery-grid { grid-template-columns: 1fr; } }
+
+
+/* ===== FIX EMPTY SPACE ON DRAG ===== */
+html, body {
+  overflow-x: hidden; /* Prevents horizontal scroll */
+  width: 100%;
+}
+
+/* Ensure no child element causes overflow */
+* {
+  max-width: 100%;
+}
+
+/* Adjust mobile menu position */
+@media (max-width: 768px) {
+  nav ul {
+    right: -100%; /* fully hidden off screen */
+  }
+  nav ul.active {
+    right: 0; /* slide in neatly from the right */
+  }
+}
+
+
 </style>
 
 </head>
